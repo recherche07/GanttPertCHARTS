@@ -1,0 +1,89 @@
+.legendContainer {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.legendTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 0.75rem;
+}
+
+.legendSection {
+  margin-bottom: 1.5rem;
+}
+
+.legendSectionTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #4b5563;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.legendGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.legendTerm {
+  font-weight: 600;
+  color: #1f2937;
+  min-width: 120px;
+}
+
+.legendDescription {
+  color: #4b5563;
+  font-size: 0.875rem;
+}
+
+.legendColorBox {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid #e5e7eb;
+}
+
+.criticalColor {
+  background-color: #fee2e2;
+  border-color: #ef4444;
+}
+
+.selectedColor {
+  background-color: #dbeafe;
+  border-color: #3b82f6;
+}
+
+.normalColor {
+  background-color: #f9fafb;
+  border-color: #d1d5db;
+}
+
+.legendText {
+  color: #4b5563;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.legendText p {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+}
+
+.legendText p:last-child {
+  margin-bottom: 0;
+}
