@@ -57,7 +57,7 @@ export default function ProjectPage() {
       return;
     }
     
-    const durationNum = parseInt(taskDuration, 10);
+    const durationNum = parseFloat(taskDuration);
     if (isNaN(durationNum) || durationNum < 0) {
       alert('La durée doit être un nombre positif ou nul.');
       return;
@@ -196,13 +196,16 @@ export default function ProjectPage() {
           
           <div className={styles.formGroup}>
             <label htmlFor="taskDuration">Durée (en {timeUnitLabels[currentTimeUnit].toLowerCase()}, 0 pour un jalon):</label>
-            <input 
-              type="number" 
-              id="taskDuration" 
-              value={taskDuration} 
-              onChange={(e: ChangeEvent<HTMLInputElement>) => setTaskDuration(e.target.value)} 
-              min="0" 
-              required 
+            <input
+              type="number"
+              id="taskDuration"
+              name="taskDuration"
+              value={taskDuration}
+              onChange={(e) => setTaskDuration(e.target.value)}
+              min="0"
+              step="0.01"
+              required
+              className={styles.formInput}
             />
           </div>
           
@@ -311,7 +314,7 @@ export default function ProjectPage() {
                       <span className={styles.noDescription}>-</span>
                     )}
                   </td>
-                  <td>{task.duration}</td>
+                  <td>{task.duration.toString()}</td>
                   <td>
                     {task.predecessorIds.length > 0 ? (
                       task.predecessorIds.map(predId => {
@@ -322,12 +325,12 @@ export default function ProjectPage() {
                       '-'
                     )}
                   </td>
-                  <td>{task.es}</td>
-                  <td>{task.ef}</td>
-                  <td>{task.ls}</td>
-                  <td>{task.lf}</td>
-                  <td>{task.totalSlack}</td>
-                  <td>{task.freeSlack}</td>
+                  <td>{task.es !== null ? task.es.toString() : '-'}</td>
+                  <td>{task.ef !== null ? task.ef.toString() : '-'}</td>
+                  <td>{task.ls !== null ? task.ls.toString() : '-'}</td>
+                  <td>{task.lf !== null ? task.lf.toString() : '-'}</td>
+                  <td>{task.totalSlack !== null ? task.totalSlack.toString() : '-'}</td>
+                  <td>{task.freeSlack !== null ? task.freeSlack.toString() : '-'}</td>
                   <td>{task.isCritical ? 'Oui' : 'Non'}</td>
                   <td className={styles.tableActions}>
                     <button 

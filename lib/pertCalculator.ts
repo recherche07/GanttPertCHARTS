@@ -181,7 +181,9 @@ export interface Task {
     tasks.forEach(task => {
       if (task.ls !== null && task.es !== null) {
         task.totalSlack = task.ls - task.es;
-        task.isCritical = task.totalSlack === 0; // Ou <= très petite valeur pour gérer les flottants
+        // Utiliser une petite valeur epsilon pour gérer les comparaisons de nombres décimaux
+      const epsilon = 0.00001;
+      task.isCritical = Math.abs(task.totalSlack) < epsilon; // Considérer comme critique si la marge est très proche de zéro
       }
   
       // Calcul de la marge libre

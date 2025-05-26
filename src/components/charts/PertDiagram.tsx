@@ -166,15 +166,15 @@ const getLayoutedElements = (tasks: Task[], timeUnit: TimeUnit, nodeWidth = 180,
 // Contenu personnalisé pour un nœud PERT
 const PertNodeContent = (task: Task, unitLabel: string) => (
   <div style={{ textAlign: 'center' }}>
-    <strong style={{ display: 'block', marginBottom: '5px', fontSize: '12px' }}>{task.id}: {task.name}</strong>
+    <strong style={{ display: 'block', marginBottom: '5px', fontSize: '12px' }}>{task.name}</strong>
     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2px 8px', marginBottom: '5px' }}>
-      <span>ES: {task.es}</span>
-      <span>EF: {task.ef}</span>
-      <span>LS: {task.ls}</span>
-      <span>LF: {task.lf}</span>
+      <span>ES: {task.es !== null ? task.es.toString() : '-'}</span>
+      <span>EF: {task.ef !== null ? task.ef.toString() : '-'}</span>
+      <span>LS: {task.ls !== null ? task.ls.toString() : '-'}</span>
+      <span>LF: {task.lf !== null ? task.lf.toString() : '-'}</span>
     </div>
-    <div>Durée: {task.duration} {unitLabel.toLowerCase()}</div>
-    <div>M.Tot: {task.totalSlack} | M.Lib: {task.freeSlack}</div>
+    <div>Durée: {task.duration.toString()} {unitLabel.toLowerCase()}</div>
+    <div>M.Tot: {task.totalSlack !== null ? task.totalSlack.toString() : '-'} | M.Lib: {task.freeSlack !== null ? task.freeSlack.toString() : '-'}</div>
     {task.isCritical && <div style={{color: '#c0392b', fontWeight: 'bold', marginTop: '3px'}}>CRITIQUE</div>}
   </div>
 );

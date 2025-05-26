@@ -163,7 +163,7 @@ const GanttChart: React.FC<GanttChartProps> = ({
             return (
               <g key={task.id} className="task-bar-group" onClick={(e) => { e.stopPropagation(); if (onTaskSelect) onTaskSelect(task.id === selectedTaskId ? null : task.id); }} style={{ cursor: 'pointer' }}>
                 <text x={taskLabelWidth - 10} y={y + barHeight / 2} dy=".35em" textAnchor="end" fontSize="11" fill={isSelected ? '#007bff' : '#333'} fontWeight={isSelected ? 'bold' : 'normal'}>
-                  {showTaskIdsAsLabels ? task.id : task.name.substring(0,15) + (task.name.length > 15 ? '...' : '')}
+                  {task.name.substring(0,15) + (task.name.length > 15 ? '...' : '')}
                 </text>
                 {isMilestone ? ( <polygon points={`${x - milestoneSize / 2},${y + barHeight / 2} ${x},${y + barHeight / 2 - milestoneSize / 2} ${x + milestoneSize / 2},${y + barHeight / 2} ${x},${y + barHeight / 2 + milestoneSize / 2}`} fill={task.isCritical ? (isSelected ? '#c0392b' : '#e74c3c') : (isSelected ? '#2980b9' : '#3498db')} stroke={isSelected ? '#0056b3' : (task.isCritical ? '#c0392b' : '#2980b9')} strokeWidth={isSelected ? "2" : "1"} />
                 ) : ( <rect x={x} y={y} width={Math.max(width, 1)} height={barHeight} fill={task.isCritical ? (isSelected ? 'rgba(192, 57, 43, 0.9)' : 'rgba(231, 76, 60, 0.8)') : (isSelected ? 'rgba(41, 128, 185,0.9)' : 'rgba(52, 152, 219, 0.8)')} stroke={isSelected ? '#0056b3' : (task.isCritical ? '#c0392b' : '#2980b9')} strokeWidth={isSelected ? "2" : "1"} rx="2" ry="2" /> )}
@@ -172,7 +172,12 @@ const GanttChart: React.FC<GanttChartProps> = ({
                     {width - textPadding * 2 > 15 ? task.name.substring(0, Math.floor((width - textPadding * 2) / 6.5)) + (task.name.length > Math.floor((width - textPadding * 2) / 6.5) ? '…' : '') : ''}
                   </text>
                 )}
-                <title>{`Tâche: ${task.name} (ID: ${task.id})\nDurée: ${task.duration} ${timeUnitLabels[timeUnit].toLowerCase()}\nES: ${task.es}, EF: ${task.ef}\nLS: ${task.ls}, LF: ${task.lf}\nTot. Slack: ${task.totalSlack}, Free Slack: ${task.freeSlack}\nCritique: ${task.isCritical ? 'Oui' : 'Non'}`}</title>
+                <title>{`Tâche: ${task.name} (ID: ${task.id})
+Durée: ${task.duration.toString()} ${timeUnitLabels[timeUnit].toLowerCase()}
+ES: ${task.es !== null ? task.es.toString() : '-'}, EF: ${task.ef !== null ? task.ef.toString() : '-'}
+LS: ${task.ls !== null ? task.ls.toString() : '-'}, LF: ${task.lf !== null ? task.lf.toString() : '-'}
+Tot. Slack: ${task.totalSlack !== null ? task.totalSlack.toString() : '-'}, Free Slack: ${task.freeSlack !== null ? task.freeSlack.toString() : '-'}
+Critique: ${task.isCritical ? 'Oui' : 'Non'}`}</title>
               </g>
             );
           })}
