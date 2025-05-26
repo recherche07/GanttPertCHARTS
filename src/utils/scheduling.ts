@@ -1,7 +1,10 @@
 import { Task, CriticalPathAnalysis, PERTResult } from '../types/task';
 
 /**
- * Calcule le forward pass pour déterminer les dates de début et fin au plus tôt
+ * Calcule le forward pass (parcours avant) pour déterminer les dates de début et fin au plus tôt
+ * 
+ * @param tasks - Liste des tâches du projet
+ * @returns Liste des tâches avec les dates au plus tôt calculées
  */
 export function calculateForwardPass(tasks: Task[]): Task[] {
   const taskMap = new Map<string, Task>();
@@ -40,7 +43,11 @@ export function calculateForwardPass(tasks: Task[]): Task[] {
 }
 
 /**
- * Calcule le backward pass pour déterminer les dates de début et fin au plus tard
+ * Calcule le backward pass (parcours arrière) pour déterminer les dates de début et fin au plus tard
+ * ainsi que les marges de chaque tâche
+ * 
+ * @param tasks - Liste des tâches du projet avec dates au plus tôt déjà calculées
+ * @returns Liste des tâches avec les dates au plus tard et marges calculées
  */
 export function calculateBackwardPass(tasks: Task[]): Task[] {
   const taskMap = new Map<string, Task>();
@@ -93,10 +100,12 @@ export function calculateBackwardPass(tasks: Task[]): Task[] {
     });
   });
   
-  // Calculer la marge de chaque tâche
+  // Calculer la marge de chaque tâche et identifier les tâches critiques
   updatedTasks.forEach(task => {
+    // La marge est la différence entre la date de début au plus tard et la date de début au plus tôt
     task.slack = task.latestStart - task.earliestStart;
-    // Une tâche est critique si sa marge est nulle
+    
+    // Une tâche est critique si sa marge est nulle (aucune flexibilité dans la planification)
     task.isCritical = task.slack === 0;
   });
   
@@ -104,7 +113,10 @@ export function calculateBackwardPass(tasks: Task[]): Task[] {
 }
 
 /**
- * Analyse du chemin critique
+ * Analyse du chemin critique en utilisant les méthodes de calcul forward et backward pass
+ * 
+ * @param tasks - Liste des tâches du projet
+ * @returns Objet contenant le chemin critique, les tâches critiques et la durée totale du projet
  */
 export function analyzeCriticalPath(tasks: Task[]): CriticalPathAnalysis {
   // Calculer les dates de début et fin au plus tôt
@@ -130,7 +142,11 @@ export function analyzeCriticalPath(tasks: Task[]): CriticalPathAnalysis {
 }
 
 /**
- * Analyse PERT complète
+ * Effectue une analyse PERT complète du projet
+ * Combine les calculs forward pass, backward pass et l'analyse du chemin critique
+ * 
+ * @param tasks - Liste des tâches du projet
+ * @returns Résultat complet de l'analyse PERT avec les tâches mises à jour et l'analyse du chemin critique
  */
 export function performPERTAnalysis(tasks: Task[]): PERTResult {
   const forwardTasks = calculateForwardPass(tasks);
