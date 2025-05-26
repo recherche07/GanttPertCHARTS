@@ -1,4 +1,5 @@
 // components/GanttChart.tsx
+//made by arthur
 import React, { useState } from 'react';
 import { Task } from '../../../lib/pertCalculator';
 // Définir TimeUnit localement pour éviter la dépendance circulaire
