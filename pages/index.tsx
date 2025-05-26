@@ -11,7 +11,7 @@ export default function Home() {
   
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <p>Redirection vers la page de gestion de projet...</p>
+      <p>Redirection vers la page de gestion de projets...</p>
     </div>
   );
 }
