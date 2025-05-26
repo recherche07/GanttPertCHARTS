@@ -8,7 +8,7 @@ import styles from '../styles/legend.module.css';
 interface LegendProps {
   /** Unité de temps utilisée dans le projet (jours, semaines, etc.) */
   timeUnit: string;
-}
+}//bien
 
 /**
  * Composant affichant une légende explicative des termes et codes couleurs utilisés

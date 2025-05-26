@@ -1,4 +1,6 @@
 // components/GanttChart.tsx
+//made by arthur
+//dependance gantt
 import React, { useState } from 'react';
 import { Task } from '../../../lib/pertCalculator';
 // Définir TimeUnit localement pour éviter la dépendance circulaire
@@ -14,7 +16,7 @@ interface GanttChartProps {
   showTaskIdsAsLabels?: boolean;
   onTaskSelect?: (taskId: string | null) => void;
   selectedTaskId?: string | null;
-}
+}//Comit
 
 const GanttChart: React.FC<GanttChartProps> = ({
   tasks,
