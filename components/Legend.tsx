@@ -1,10 +1,22 @@
 import React from 'react';
 import styles from '../styles/legend.module.css';
 
+/**
+ * Props pour le composant Legend
+ * @interface LegendProps
+ */
 interface LegendProps {
+  /** Unité de temps utilisée dans le projet (jours, semaines, etc.) */
   timeUnit: string;
 }
 
+/**
+ * Composant affichant une légende explicative des termes et codes couleurs utilisés
+ * dans les diagrammes PERT et Gantt
+ * 
+ * @param {LegendProps} props - Les propriétés du composant
+ * @returns {JSX.Element} Composant Legend
+ */
 const Legend: React.FC<LegendProps> = ({ timeUnit }) => {
   return (
     <div className={styles.legendContainer}>
