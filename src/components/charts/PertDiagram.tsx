@@ -1,5 +1,7 @@
 // components/PertDiagram.tsx
 //pert
+
+//dependances pert
 import React, { useMemo, useCallback, useEffect } from 'react';
 import ReactFlow, {
   addEdge,
