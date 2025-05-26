@@ -3,7 +3,7 @@ import styles from '../styles/legend.module.css';
 
 interface LegendProps {
   timeUnit: string;
-}
+}//bien
 
 const Legend: React.FC<LegendProps> = ({ timeUnit }) => {
   return (
