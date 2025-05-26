@@ -14,7 +14,7 @@ interface GanttChartProps {
   showTaskIdsAsLabels?: boolean;
   onTaskSelect?: (taskId: string | null) => void;
   selectedTaskId?: string | null;
-}
+}//Comit
 
 const GanttChart: React.FC<GanttChartProps> = ({
   tasks,
